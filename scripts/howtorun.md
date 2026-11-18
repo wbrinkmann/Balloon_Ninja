@@ -1,0 +1,2 @@
+**visualize_detetor.py**
+env -u GTK_PATH -u QT_QPA_PLATFORMTHEME GSETTINGS_SCHEMA_DIR=/usr/share/glib-2.0/schemas XDG_DATA_DIRS=/usr/local/share:/usr/share QT_STYLE_OVERRIDE=Fusion /usr/bin/python3 -m scripts.visualize_detector
