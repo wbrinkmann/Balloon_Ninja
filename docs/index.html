@@ -13,7 +13,41 @@
       padding: 0 20px;
       color: #222;
     }
-    h1, h2 { border-bottom: 1px solid #eee; padding-bottom: 8px; }
+
+    /* Tab bar styling */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid #eee;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #555;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    .tab-btn:hover {
+      color: #000;
+    }
+    .tab-btn.active {
+      color: #0969da;
+      font-weight: 600;
+      border-bottom-color: #0969da;
+    }
+
+    /* Hide inactive tab sections */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
     img, video {
       max-width: 100%;
       height: auto;
@@ -21,23 +55,11 @@
       margin: 16px 0;
       display: block;
     }
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      margin: 16px 0;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border-radius: 6px;
-    }
+    li {margin-bottom: 8px;}   
+    ul ul {margin-top: 8px;}
   </style>
 </head>
 <body>
-
-  <h1>Balloon Ninja</h1>
 
   <h2>Milestone 1 Update</h2>
   <p><em>November 22, 2026</em></p>
@@ -58,5 +80,107 @@
 
   <p> We have looked into this and while theoretical physics is kinda interesting, it alone will not be sufficient, so we are hoping to incorporate it with a Kalman filter. Currently learning how it operates, reading skeleton code, and will then try implementing over break, for milestone 2. This will then inform the inverse kinematics for the robot arm. Determined that from machine vision will have the u, v, radius (potentially converted into x, y coordinates) to then predict. <p></p>
 </p>
+</body>
+
+
+<body>
+
+  <h1>Balloon Ninja</h1>
+
+  <!-- Tab Buttons -->>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="openTab(event, 'milestone-1')">Milestone 1</button>
+    <button class="tab-btn" onclick="openTab(event, 'milestone-2')">Milestone 2</button>
+    <button class="tab-btn" onclick="openTab(event, 'about')">Project Proposal</button>
+  </div>
+
+  <!--Tab Sections-->
+  <div id="milestone-1" class="tab-content active">
+    <h2>Milestone 1 Update</h2>
+    <p><em>Date: November 22, 2026</em></p>
+    <p>Tracking multiple balloons of various colors at once has been implemented. After research we decided that as long as the HSV ranges are kept strict and low detection radii are filtered out, color detection is good enough for detecting balloons. The only current limitation of color tracking is that HSV ranges have to be tuned if when moving between work environments, the lighting strongly differs. </p>
+
+    <video controls>
+        <source src="assets/Mileston1_assets/BalloonTracking_Milestone1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <p>Major updates include: Connecting the arm with ros2, using the joystick controller to teleop the arm - communicates through ros2, writing the setup file. </p>
+
+    <video controls>
+        <source src="assets/Mileston1_assets/RobotArmWorking_Milestone1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <p> We have looked into this and while theoretical physics is kinda interesting, it alone will not be sufficient, so we are hoping to incorporate it with a Kalman filter. Currently learning how it operates, reading skeleton code, and will then try implementing over break, for milestone 2. This will then inform the inverse kinematics for the robot arm. Determined that from machine vision will have the u, v, radius (potentially converted into x, y coordinates) to then predict. <p></p>
+  </div>
+
+  <div id="milestone-2" class="tab-content">
+    <h2>Milestone 2 Update</h2>
+    <p>Coming soon...</p>
+  </div>
+
+  <div id="about" class="tab-content">
+    <h2>Project Proposal</h2>
+    <p>Overview of the project.</p>
+    <h3>What is the main idea of the project?</h3>
+    <ul>
+    <li>Fruit Ninja inspired - Throwing balloon into air and having a robot arm pop it (with needle or knife?)</li>
+    <li>We want to utilize machine vision to detect a balloon, mathematically predict its trajectory, and create an algorithm to have the robot arm move to the predicted position and pop the balloon. The stretch/complete idea is to have something very similar to fruit ninja where the arm is able to pop multiple balloons viewed by the camera.</li>
+    </ul>
+
+    <h3>Provide some motivation for your project. Why does your team want to pursue this? What possible applications does the project have?</h3>
+    <ul>
+    <li>We all need some whimsy in our lives and drawing back on a childhood favorite game was a fun concept idea. We all united under this initial idea and then as we explored the feasibility and concepts needed we found a large interest in the overlap. As all of us wish to pursue working with a physical robot, in specific the robotic arm, this project idea both satisfied a whimsical fun application and our learning objectives (outlined below).</li>
+    <li>This project is not directly applicable to the real world, however, the concepts which will be learned and the robotics arm manipulation are translatable to real world applications. This robot looks at finding a moving object, similarly in an orchard an apple may be swaying and a robot needs to pick it. Here, we are not picking, but the tracking and moving of the robot arm is similar. This can also be said for a manufacturing floor where as an item moves across the floor, a robot may need to identify it and pick it, similar to this project's intentions.</li>
+    </ul>
+
+    <h3>What topics will you explore, and what will you generate? What frameworks / algorithms are you planning to explore?</h3>
+    <ul>
+    <li>We will be exploring inverse kinematics to find what angle to move the arm to be able to pop the balloon
+        <ul>
+        <li>We will look into reinforcement learning to get the arm to move in an optimal (as fast as possible) path so that it can pop the most balloons.</li>
+        </ul>
+    </li>
+    <li>Object detection - potentially combining color and shape detection (OpenCV functions)</li>
+    <li>Trajectory mapping - Kalman filter?</li>
+    <li>ROS2</li>
+    <li>Reinforcement learning</li>
+    </ul>
+
+    <h3>What is your MVP? What are your stretch goals?</h3>
+    <ul>
+    <li>The MVP will include a balloon being released from above the robot, it floating down, and the robot making a mark with a sharpie on it as it descends. Marker should poke it out of the “plane” that the balloons are moving in.</li>
+    <li>Stretch goals (ranked in order of implementation preference):
+        <ul>
+        <li>Using a needle to pop the balloon (for safety purposes everyone in the room will be required to wear safety glasses)</li>
+        <li>Balloons being thrown up (like in fruit ninja fruits are thrown up and then fall down)</li>
+        <li>Identify multiple balloons, different colors can be different points.</li>
+        <li>Being able to identify “bombs” or items thrown in that shouldn’t be popped. This may be achieved by using different balloon colors and only ‘targeting’ certain colors, or by including a stress ball or ballpit ball as distractors.</li>
+        <li>Using a knife to pop the balloon, like a slash. (yes, we promise to first write a safety protocol)</li>
+        </ul>
+    </li>
+    </ul>
+  </div>
+
+  <!-- 3. TAB SWITCHING SCRIPT -->
+  <script>
+    function openTab(event, tabId) {
+      // Hide all tab content sections
+      document.querySelectorAll('.tab-content').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Remove active highlight from all tab buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Show the clicked tab and highlight its button
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
