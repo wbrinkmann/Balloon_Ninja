@@ -45,10 +45,18 @@
   <p>Tracking multiple balloons of various colors at once has been implemented. After research we decided that as long as the HSV ranges are kept strict and low detection radii are filtered out, color detection is good enough for detecting balloons. The only current limitation of color tracking is that HSV ranges have to be tuned if when moving between work environments, the lighting strongly differs. </p>
 
   <video controls>
-    <source src="assets/BalloonTracking_Milestone1.mp4" type="video/mp4">
+    <source src="assets/Mileston1_assets/BalloonTracking_Milestone1.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
+  <p>Major updates include: Connecting the arm with ros2, using the joystick controller to teleop the arm - communicates through ros2, writing the setup file. </p>
 
+  <video controls>
+    <source src="assets/Mileston1_assets/RobotArmWorking_Milestone1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <p> We have looked into this and while theoretical physics is kinda interesting, it alone will not be sufficient, so we are hoping to incorporate it with a Kalman filter. Currently learning how it operates, reading skeleton code, and will then try implementing over break, for milestone 2. This will then inform the inverse kinematics for the robot arm. Determined that from machine vision will have the u, v, radius (potentially converted into x, y coordinates) to then predict. <p></p>
+</p>
 </body>
 </html>
